@@ -1,10 +1,9 @@
 const quizService = require('../services/quizService');
 
 exports.getQuizzes = async (request, reply) => {
-  const quizzes = await quizService.getQuizzes();
-  reply.header("Access-Control-Allow-Origin", "*");
+  const { page, limit } = request.query;
+  const result = await quizService.getQuizzes(page, limit);
 
   // throw new Error('Error getting quizzes');
-
-  reply.status(400).send({ quizzes });
+  reply.status(200).send({ data: result });
 };

@@ -40,6 +40,34 @@ const mockQuizzes = [
     rating: null,
     questions: [{id: '1', type: 'open-ended', text: 'What are Pipes?'}],
   },
+  {
+    id: '6',
+    title: 'Directives',
+    createdAt: new Date(),
+    private: false,
+    rating: null,
+    questions: [{id: '1', type: 'open-ended', text: 'What are Directives?'}],
+  },
+  {
+    id: '7',
+    title: 'HTTP Client',
+    createdAt: new Date(),
+    private: false,
+    rating: 3,
+    questions: [{id: '1', type: 'open-ended', text: 'What is Http Client?'}],
+  },
 ];
 
-exports.getQuizzes = async () => mockQuizzes;
+exports.getQuizzes = async (page = 1, limit = 10) => {
+  const startIndex = (page - 1) * limit;
+  const endIndex = Number(startIndex) + Number(limit);
+
+  const quizzes = mockQuizzes.slice(startIndex, endIndex);
+
+  return {
+    page,
+    limit,
+    total: mockQuizzes.length,
+    quizzes,
+  };
+};
