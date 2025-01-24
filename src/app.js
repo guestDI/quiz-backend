@@ -1,7 +1,8 @@
 const app = require('fastify')({ logger: true });
 const cors = require('@fastify/cors');
-const aboutRoute = require('./routes/about');
-const quizRoute = require('./routes/quiz');
+const aboutRoutes = require('./routes/about');
+const quizRoutes = require('./routes/quiz');
+const userRoutes = require('./routes/user');
 
 app.register(cors, {
   origin: '*',
@@ -14,7 +15,8 @@ app.register(require('./plugins/db'));
 app.register(require('./plugins/auth'));
 
 //Routes registration
-app.register(quizRoute, { prefix: '/quiz' });
-app.register(aboutRoute, { prefix: '/about' });
+app.register(quizRoutes, { prefix: '/quiz' });
+app.register(aboutRoutes, { prefix: '/about' });
+app.register(userRoutes, { prefix: '/user' });
 
 module.exports = app;
