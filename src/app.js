@@ -4,13 +4,16 @@ const aboutRoutes = require('./routes/about');
 const quizRoutes = require('./routes/quiz');
 const userRoutes = require('./routes/user');
 
+//Plugins registration
 app.register(cors, {
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 });
+app.register(require('@fastify/jwt'), {
+  secret: 'supersecret'
+})
 
-//Plugins registration
 app.register(require('./plugins/db'));
 app.register(require('./plugins/auth'));
 

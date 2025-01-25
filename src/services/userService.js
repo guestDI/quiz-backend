@@ -5,7 +5,7 @@ const mockedUsers = [
     lastVisitedAt: new Date(),
   },
   {
-    id: '2',
+    id: 'NfDeS29aZJNrcjmn8eaEFmicjxq2',
     email: 'test.user@email.com',
     lastVisitedAt: new Date(),
   },

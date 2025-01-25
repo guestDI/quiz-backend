@@ -7,3 +7,13 @@ exports.getQuizzes = async (request, reply) => {
   // throw new Error('Error getting quizzes');
   reply.status(200).send({ data: result });
 };
+
+exports.getQuizzesByUserId = async (request, reply) => {
+  try {
+    const userId = request.user;
+    const quizzes = await quizService.getQuizzesByUserId(userId);
+    reply.send(quizzes);
+  } catch (err) {
+    reply.send(err);
+  }Ï
+};
