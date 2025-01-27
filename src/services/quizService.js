@@ -1,3 +1,5 @@
+const { v4 } = require('uuid');
+
 const mockQuizzes = [
   {
     id: '1',
@@ -7,7 +9,6 @@ const mockQuizzes = [
     private: false,
     rating: null,
     questions: [{id: '1', type: 'open-ended', text: 'What is Angular?'}, {id: '2', type: 'open-ended', text:'What is a Component?'}],
-
   },
   {
     id: '2',
@@ -104,4 +105,8 @@ exports.getQuizzesByUserId = async (userId, page = 1, limit = 10) => {
     total: mockQuizzes.length,
     quizzes,
   };
+}
+
+exports.addQuiz = async (quiz) => {
+  return quiz;
 }

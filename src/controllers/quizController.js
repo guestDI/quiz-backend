@@ -18,3 +18,12 @@ exports.getQuizzesByUserId = async (request, reply) => {
     reply.send(err);
   }
 };
+
+exports.addQuiz = async (request, reply) => {
+  try {
+    const newQuiz = await quizService.addQuiz(quiz);
+    reply.send(newQuiz);
+  } catch (err) {
+    reply.send(err);
+  }
+};
