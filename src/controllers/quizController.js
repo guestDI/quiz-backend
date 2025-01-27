@@ -11,9 +11,10 @@ exports.getQuizzes = async (request, reply) => {
 exports.getQuizzesByUserId = async (request, reply) => {
   try {
     const userId = request.user;
-    const quizzes = await quizService.getQuizzesByUserId(userId);
+    const { page, limit } = request.query;
+    const quizzes = await quizService.getQuizzesByUserId(userId, page, limit);
     reply.send(quizzes);
   } catch (err) {
     reply.send(err);
-  }Ï
+  }
 };

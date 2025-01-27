@@ -5,7 +5,7 @@ const mockQuizzes = [
     createdAt: new Date(),
     userId: null,
     private: false,
-    rating: 4.5,
+    rating: null,
     questions: [{id: '1', type: 'open-ended', text: 'What is Angular?'}, {id: '2', type: 'open-ended', text:'What is a Component?'}],
 
   },
@@ -15,7 +15,7 @@ const mockQuizzes = [
     createdAt: new Date(),
     userId: null,
     private: false,
-    rating: 4.5,
+    rating: null,
     questions: [{id: '1', type: 'open-ended', text: 'What is an Observable?'}, {id: '2', type: 'open-ended', text:'What is a Subject?'}],
   },
   {
@@ -90,7 +90,18 @@ exports.getQuizzes = async (page = 1, limit = 10) => {
   };
 };
 
-exports.getQuizzesByUserId = async (userId) => {
-  console.log('userid', userId)
-  return mockQuizzes.filter(quiz => quiz.userId === userId);
+exports.getQuizzesByUserId = async (userId, page = 1, limit = 10) => {
+  const startIndex = (page - 1) * limit;
+  const endIndex = Number(startIndex) + Number(limit);
+
+  const filteredQuizzes = mockQuizzes.filter(quiz => quiz.userId === userId);
+
+  const quizzes = filteredQuizzes.slice(startIndex, endIndex);
+
+  return {
+    page,
+    limit,
+    total: mockQuizzes.length,
+    quizzes,
+  };
 }
