@@ -12,8 +12,8 @@ exports.getQuizzesByUserId = async (request, reply) => {
   try {
     const userId = request.user;
     const { page, limit } = request.query;
-    const quizzes = await quizService.getQuizzesByUserId(userId, page, limit);
-    reply.send(quizzes);
+    const result = await quizService.getQuizzesByUserId(userId, page, limit);
+    reply.status(200).send({ data: result });
   } catch (err) {
     reply.send(err);
   }

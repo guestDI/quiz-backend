@@ -5,7 +5,7 @@ const mockQuizzes = [
     id: '1',
     title: 'Angular Basics',
     createdAt: new Date(),
-    userId: null,
+    userId: 'NfDeS29aZJNrcjmn8eaEFmicjxq2',
     private: false,
     rating: null,
     questions: [{id: '1', type: 'open-ended', text: 'What is Angular?'}, {id: '2', type: 'open-ended', text:'What is a Component?'}],
@@ -102,7 +102,7 @@ exports.getQuizzesByUserId = async (userId, page = 1, limit = 10) => {
   return {
     page,
     limit,
-    total: mockQuizzes.length,
+    total: filteredQuizzes.length,
     quizzes,
   };
 }
